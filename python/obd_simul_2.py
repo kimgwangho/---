@@ -42,10 +42,3 @@ while(True) :
     
 
     msgCnt = msgCnt + 1
-    
-    
-    
-    time.sleep(1)
-    
-
-    msgCnt = msgCnt + 1
