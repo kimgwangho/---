@@ -1,0 +1,36 @@
+package com.pro.dao.Product;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.pro.dto.ProductVO;
+
+@Repository
+public class ProductDAOImpl implements ProductDAO{
+	
+	@Inject
+    private SqlSession sqlSession;
+
+	private static final String Namespace = "com.pro.mappers.productMapper";
+
+	@Override
+	public List<ProductVO> SelectProductList(Map parms) throws Exception {
+		return sqlSession.selectList(Namespace+".selectProductList", parms);
+	}
+
+	@Override
+	public int SelectProductListCount() throws Exception {
+		return sqlSession.selectOne(Namespace+".selectProductListCount");
+	}
+
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		return sqlSession.selectList(Namespace+".selectProductList", parms);
+	}
+
+}

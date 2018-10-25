@@ -1,0 +1,15 @@
+package com.pro.service.Interface;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.pro.dto.ProductVO;
+
+@Servicepublic class InterfaceServiceImpl {
+	// 외부 인터페이스
+		@Override
+		public List<ProductVO> GetProductInfos() throws Exception {
+			return dao.GetProductInfos();
+		}
+}

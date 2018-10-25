@@ -1,0 +1,108 @@
+package com.pro.mango;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pro.dto.AccountVO;
+import com.pro.dto.ProductVO;
+import com.pro.service.Interface.InterfaceService;
+import com.pro.service.Product.ProductService;
+
+@Controller
+public class AppInterfaceController {
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@Inject
+	private InterfaceService service;
+
+	@Autowired
+	DataSource dataSource;
+	
+	@RequestMapping(value = "/get_product_infos.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<ProductVO> SelectProductInfos(HttpServletResponse response) throws Exception {
+		return service.GetProductInfos();
+	}
+	
+	@RequestMapping(value = "/update_complete.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String UpdateComplete(
+			@RequestParam(defaultValue="") String user_id,
+			@RequestParam(defaultValue="") String name,
+			@RequestParam(defaultValue="") String hp_num,
+			@RequestParam(defaultValue="") String prdct_code,
+			HttpServletResponse response) throws Exception {
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+	
+		int result;
+		// construct an appropriate transaction manager
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+		TransactionStatus sts = txManager.getTransaction(def);
+
+		try {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("user_id", user_id);
+			params.put("name", name);
+			params.put("hp_num", hp_num);
+			params.put("prdct_code", prdct_code);
+			
+			// update order info..
+			result = service.UpdateComplete(params);			
+		}catch(Exception e){
+			 txManager.rollback(sts);
+			 return "{\"result\":-2}";
+		}
+		
+		// 일치하는 데이터가 없습니다.
+		if(result  == 0) {
+			txManager.rollback(sts);
+			return "{\"result\":0}";
+		} else if (result > 1) {
+			// 일치하는 데이터가 1개 이상 있습니다.
+			txManager.rollback(sts);
+			return "{\"result\":-1}";
+		}
+		
+		txManager.commit(sts);
+		return "{\"result\":1}";
+	}
+	
+	@RequestMapping(value = "/get_account_info.json", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String GetAccountInfo(
+			@RequestParam(defaultValue="") String user_id,
+			@RequestParam(defaultValue="") String pwd,
+			@RequestParam(defaultValue="") String push_id,
+			HttpServletResponse response) throws Exception {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("user_id", user_id);
+		params.put("name", name);
+		params.put("hp_num", hp_num);
+		params.put("prdct_code", prdct_code);
+		
+		service.GetAccountInfo(params);
+		
+		
+		
+		return "{\"result\":1}";
+	}
+}

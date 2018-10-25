@@ -1,0 +1,8 @@
+package com.pro.dao.Interface;
+
+import java.util.List;
+import java.util.Map;
+
+public interface InterfaceDAO {
+	public List<ProductVO> GetProductInfos() throws Exception;
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.pro.mappers.orderMapper">
+	
+ 	<select id="insertOrderInfo" parameterType="orderVO">
+		INSERT INTO `ORDER` (order_time, order_type, open_ready, user_id, prdct_code, name, hp_num, pay_yn, finish_yn)
+		VALUES (now(), #{order_type}, #{open_ready}, #{user_id}, #{prdct_code}, #{name}, #{hp_num}, 'n', 'n')
+    </select>
+ 
+
+ 	<select id="selectOrderList" parameterType="map" resultType="orderVO" >
+		SELECT 
+			order_no
+			, prdct_code
+			, name
+			, order_time
+			, order_type
+			, open_ready
+			, pay_yn
+			, finish_yn
+			, finish_time
+		FROM `ORDER`
+		WHERE
+		<![CDATA[
+			#{order_start_time} <= DATE(order_time) AND #{order_end_time} >= DATE(order_time)
+		]]>
+		
+		<if test="name != ''">
+			AND name LIKE #{name}
+		</if>
+		<if test="pay_yn != ''">
+			AND pay_yn = #{pay_yn}
+		</if>
+
+		<if test="finish_yn != ''">
+			AND finish_yn = #{finish_yn}
+		</if>
+		
+		<if test="order_type != ''">
+			AND order_type = #{order_type}
+		</if>
+		
+		LIMIT #{start}, #{end}
+    </select>
+ 
+ 	<select id="selectOrderListCount" parameterType="map" resultType="int" >
+		SELECT 
+			count(*) 
+		FROM `ORDER`
+		WHERE
+		<![CDATA[
+			#{order_start_time} <= DATE(order_time) AND #{order_end_time} >= DATE(order_time)
+		]]>
+		
+		<if test="name != ''">
+			AND name = #{name}
+		</if>
+		<if test="pay_yn != ''">
+			AND pay_yn = #{pay_yn}
+		</if>
+		<if test="finish_yn != ''">
+			AND finish_yn = #{finish_yn}
+		</if>
+
+		<if test="order_type != ''">
+			AND order_type = #{order_type}
+		</if>
+
+    </select>
+ 
+  	<select id="updateOrderPay" parameterType="String" resultType="int" >
+		UPDATE `ORDER` SET pay_yn = 'y' WHERE order_no = #{order_no}
+    </select>
+    
+  	<select id="updateOrderFinish" parameterType="String" resultType="int" >
+		UPDATE `ORDER` SET finish_yn = 'y', finish_time = now() WHERE order_no = #{order_no}
+    </select>
+    
+    
+    <!-- 회원관리 및 주문관리 -->
+  	<select id="selectSendMessageList" parameterType="Map" resultType="sendMessageVO" >
+		SELECT
+			`ORDER`.name
+			, `ORDER`.user_id
+			, acc.hp_num
+			, order_time
+			, order_type
+			, pro.`data`
+			, pro.sms
+			, pro.tel
+			, pro.price
+			, pro.`desc`
+			, open_ready
+			, `ORDER`.prdct_code
+		FROM `ORDER`
+			LEFT JOIN `PRODUCT` pro ON pro.prdct_code = `ORDER`.prdct_code
+			LEFT JOIN `ACCOUNT` acc on acc.user_id = `ORDER`.user_id
+		WHERE
+		<![CDATA[
+			#{start_datepicker} <= DATE(order_time) AND #{end_datepicker} >= DATE(order_time)
+		]]>
+		
+		<if test="name != ''">
+			AND name = #{name}
+		</if>
+		<if test="order_type != ''">
+			AND order_type = #{order_type}
+		</if>
+		<if test="prdct_code != ''">
+			AND `ORDER`.prdct_code = #{prdct_code}
+		</if>
+
+		<if test="open_ready != ''">
+			AND open_ready = #{open_ready}
+		</if>
+		
+		LIMIT #{start}, #{end}
+    </select>
+    
+    <select id="selectSendMessageListCount" parameterType="Map" resultType="int" >
+		SELECT
+			count(*)
+		FROM `ORDER`
+		WHERE
+		<![CDATA[
+			#{start_datepicker} <= DATE(order_time) AND #{end_datepicker} >= DATE(order_time)
+		]]>
+		
+		<if test="name != ''">
+			AND name = #{name}
+		</if>
+		<if test="order_type != ''">
+			AND order_type = #{order_type}
+		</if>
+		<if test="prdct_code != ''">
+			AND prdct_code = #{prdct_code}
+		</if>
+		<if test="open_ready != ''">
+			AND open_ready = #{open_ready}
+		</if>
+    </select>
+    
+</mapper>

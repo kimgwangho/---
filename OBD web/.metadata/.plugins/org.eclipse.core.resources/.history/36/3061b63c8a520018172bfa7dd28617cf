@@ -1,0 +1,11 @@
+package com.pro.service.Interface;
+
+import java.util.List;
+import java.util.Map;
+
+import com.pro.dto.ProductVO;
+
+public interface InterfaceService {
+	// 외부 인터페이스
+		public List<ProductVO> GetProductInfos(Map param) throws Exception;
+}

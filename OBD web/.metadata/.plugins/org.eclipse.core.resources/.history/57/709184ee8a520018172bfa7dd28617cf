@@ -1,0 +1,25 @@
+package com.pro.dao.Interface;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.pro.dto.ProductVO;
+
+@Repository
+public class InterfaceDAOImpl implements InterfaceDAO{
+
+	@Inject
+    private SqlSession sqlSession;
+
+	private static final String Namespace = "com.pro.mappers.productMapper";
+	
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		return sqlSession.selectList(Namespace+".selectProductList", parms);;
+	}
+
+}

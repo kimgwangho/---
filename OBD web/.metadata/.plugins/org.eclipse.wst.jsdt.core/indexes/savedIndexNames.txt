@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Project\02_MangoFone\web\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+145949572.index
+3091130786.index
+875902052.index
+69072347.index
+2641820161.index
+388934125.index

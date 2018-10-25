@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.pro.mappers.interfaceMapper">
+ 	<select id="getProductInfos" parameterType="map" resultType="productVO">
+		SELECT 
+			`prdct_code`, `data`, `sms`, `tel`, `price`, `remain_sch_cd`, `desc` 
+		FROM `PRODUCT`
+    </select>
+ 
+ <!-- updateComplete  -->
+ 	
+ 	<update id="updateComplete" parameterType="map"></update>
+ 	
+</mapper>

@@ -1,0 +1,8 @@
+package com.pro.dao.Interface;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class InterfaceDAOImpl implements InterfaceDAO{
+
+}

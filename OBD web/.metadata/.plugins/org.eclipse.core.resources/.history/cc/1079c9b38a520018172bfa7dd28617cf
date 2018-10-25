@@ -1,0 +1,14 @@
+package com.pro.dao.Product;
+
+import java.util.List;
+import java.util.Map;
+
+import com.pro.dto.ProductVO;
+
+public interface ProductDAO {
+	public List<ProductVO> SelectProductList(Map parms) throws Exception;
+	public int SelectProductListCount() throws Exception;
+	
+	// 외부 인터페이스
+	public List<ProductVO>GetProductInfos() throws Exception;
+}

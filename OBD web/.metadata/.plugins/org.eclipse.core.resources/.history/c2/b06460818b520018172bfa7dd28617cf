@@ -1,0 +1,28 @@
+package com.pro.service.Interface;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.pro.dao.Interface.InterfaceDAO;
+import com.pro.dao.Product.ProductDAO;
+import com.pro.dto.ProductVO;
+
+@Service
+public class InterfaceServiceImpl implements InterfaceService{
+	@Inject
+    private InterfaceDAO dao;
+	
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		return dao.GetProductInfos();
+	}
+
+	@Override
+	public int UpdateComplete(Map params) throws Exception {
+		return dao.UpdateComplete(parmas);
+	}
+}

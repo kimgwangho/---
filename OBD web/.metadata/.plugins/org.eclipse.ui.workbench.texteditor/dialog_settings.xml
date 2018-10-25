@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="416" key="DIALOG_X_ORIGIN"/>
+		<item value="336" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="insert_order_info" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="insert_order_info"/>
+			<item value="insert_account_info.json"/>
+			<item value="select_account.json"/>
+			<item value="insert_account_info"/>
+			<item value="getAccountInfo"/>
+			<item value="update result"/>
+			<item value="update"/>
+			<item value="DataSource"/>
+			<item value="dataSource"/>
+			<item value="SelectProductList"/>
+			<item value="selectProductList"/>
+			<item value="selectProductListCount"/>
+			<item value="get_product_infos"/>
+			<item value="push_id"/>
+			<item value="send_phone_num"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="340" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="454" key="DIALOG_HEIGHT"/>
+		<item value="1035" key="DIALOG_X_ORIGIN"/>
+		<item value="406" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

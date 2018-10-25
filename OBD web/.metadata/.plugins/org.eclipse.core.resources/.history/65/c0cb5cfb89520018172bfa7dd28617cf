@@ -1,0 +1,6 @@
+package com.pro.dao.Interface;
+
+public interface InterfaceDAO {
+	()
+	public int GetProductInfos(String order_no) throws Exception;
+}

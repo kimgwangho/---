@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">obd</string>
+    <string name="title_activity_obd_data_search">ObdDataSearchActivity</string>
+</resources>

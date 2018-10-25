@@ -1,0 +1,34 @@
+package com.pro.service.Product;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.pro.dao.Order.OrderDAO;
+import com.pro.dao.Product.ProductDAO;
+import com.pro.dto.ProductVO;
+
+@Service
+public class ProductServicImpl implements ProductService{
+	@Inject
+    private ProductDAO dao;
+	
+	@Override
+	public List<ProductVO> SelectProductList(Map parms) throws Exception {
+		return dao.SelectProductList(parms);
+	}
+
+	@Override
+	public int SelectProductListCount() throws Exception {
+		return dao.SelectProductListCount();
+	}
+
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		return dao.GetProductInfos(parms);;
+	}
+
+}

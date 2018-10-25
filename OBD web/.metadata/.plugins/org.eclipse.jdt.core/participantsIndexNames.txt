@@ -1,0 +1,7 @@
+INDEX VERSION 1.130
+C:\Project\02_MangoFone\web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\475135715.index
+\MangoFone\src\main\java
+C:\Project\02_MangoFone\web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\594050328.index
+\MangoFone\src\main\java
+C:\Project\02_MangoFone\web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1445493155.index
+\MangoFone\src\main\java

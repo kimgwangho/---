@@ -1,0 +1,18 @@
+package com.pro.dao.Interface;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.pro.dto.ProductVO;
+
+@Repository
+public class InterfaceDAOImpl implements InterfaceDAO{
+
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

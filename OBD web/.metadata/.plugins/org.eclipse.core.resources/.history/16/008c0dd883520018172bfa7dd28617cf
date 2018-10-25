@@ -1,0 +1,14 @@
+package com.pro.service.Product;
+
+import java.util.List;
+import java.util.Map;
+
+import com.pro.dto.ProductVO;
+
+public interface ProductService {
+	public List<ProductVO> SelectProductList(Map parms) throws Exception;
+	public int SelectProductListCount() throws Exception;
+
+	// 외부 인터페이스
+	pubilc List<ProductVO> GetProductInfos() throws Exception;
+}

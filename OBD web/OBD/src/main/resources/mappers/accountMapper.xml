@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.pro.mappers.accountMapper">
+	
+ 	<select id="insertAccountInfo" parameterType="accountVO">
+		INSERT INTO ACCOUNT (user_id, pwd, name, hp_num)
+		VALUES (#{user_id}, #{pwd}, #{name}, #{hp_num})
+    </select>
+ 
+	<select id="selectAccountInfo" parameterType="accountVO" resultType="accountVO">
+		SELECT 
+			user_id, pwd, auth, name, hp_num 
+		FROM ACCOUNT 
+		WHERE user_id = #{user_id} AND pwd = #{pwd}
+    </select>
+ 
+</mapper>

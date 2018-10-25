@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.pro.mappers.interfaceMapper">
+  	
+ 	<select id="getAccountInfo" parameterType="map" resultType="accountVO">
+		SELECT 
+			`user_id`, `pwd`, `name`, `hp_num` 
+		FROM `ACCOUNT`
+		WHERE `user_id` = #{user_id}
+		AND `pwd` = #{pwd}
+    </select>
+    
+ 	<select id="insertObdData" parameterType="obdVO">
+		INSERT INTO OBD_DATA (timestamp, msgcnt, cool_temp, rpm, time_after, vehicle_spd, engine_oil_temp, fuel_type, bettery_rmn, remain_oil, consume_oil, distance_driven)
+		VALUES (#{timestamp}, #{msgcnt}, #{cool_temp}, #{rpm}, #{time_after}, #{vehicle_spd}, #{engine_oil_temp}, #{fuel_type}, #{bettery_rmn}, #{remain_oil}, #{consume_oil}, #{distance_driven}
+		)
+    </select>
+ 
+ 
+ 	<select id="selectObdData" parameterType="map" resultType="obdVO">
+		SELECT timestamp, msgcnt, cool_temp, rpm, time_after, vehicle_spd, engine_oil_temp, fuel_type, bettery_rmn, remain_oil, consume_oil, distance_driven FROM OBD_DATA order by timestamp desc limit 1
+    </select>
+ 
+ 
+</mapper>

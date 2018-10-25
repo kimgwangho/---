@@ -1,0 +1,5 @@
+package com.pro.dao.Interface;
+
+public interface InterfaceDAO {
+	public int GetProductInfos(Map param) throws Exception;
+}

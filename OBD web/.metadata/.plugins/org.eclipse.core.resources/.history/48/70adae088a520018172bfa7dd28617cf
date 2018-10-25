@@ -1,0 +1,21 @@
+package com.pro.service.Interface;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.pro.dao.Product.ProductDAO;
+import com.pro.dto.ProductVO;
+
+@Service
+public class InterfaceServiceImpl implements InterfaceService{
+	@Inject
+    private InterfaceDAO interface_dao;
+	
+	@Override
+	public List<ProductVO> GetProductInfos() throws Exception {
+		return interface_dao.GetProductInfos();
+	}
+}

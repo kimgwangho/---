@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.pro.mappers.interfaceMapper">
+ 	<select id="getProductInfos" parameterType="map" resultType="productVO">
+		SELECT 
+			`prdct_code`, `data`, `sms`, `tel`, `price`, `remain_sch_cd`, `desc` 
+		FROM `PRODUCT`
+    </select>
+  	
+ 	<update id="updateComplete" parameterType="map">
+ 		UPDATE 
+ 			`ORDER` SET finish_yn = 'y'
+ 			, finish_time = now() 
+ 		WHERE 
+ 			hp_num = #{hp_num}
+ 			
+			<if test="user_id != ''">
+ 				AND user_id = #{user_id}
+ 			</if>
+			<if test="name != ''">
+	 			AND name = #{name}
+	 		</if>
+			<if test="prdct_code != ''">	 		
+ 				AND prdct_code = #{prdct_code}
+			</if>
+			
+			AND finish_yn = 'n'
+ 	</update>
+ 	
+ 	<select id="getAccountInfo" parameterType="map">
+		SELECT 
+			`user_id`, `pwd`, `auth`, `name`, `hp_num`, `push_id` 
+		FROM `ACCOUNT`
+		WHERE `user_id` = #{user_id}
+		AND ``
+    </select>
+</mapper>
